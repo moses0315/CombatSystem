@@ -1,9 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpvx5dtqgyxr0"]
+[gd_scene load_steps=4 format=3 uid="uid://dpvx5dtqgyxr0"]
 
 [ext_resource type="PackedScene" uid="uid://wfufadg3krmj" path="res://player.tscn" id="1_jedae"]
+[ext_resource type="Texture2D" uid="uid://bb8betedfjl0u" path="res://Assets/Backcground/back.png" id="2_lurka"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hey54"]
+size = Vector2(509, 1016)
 
 [node name="Combat" type="Node2D"]
 
+[node name="Back" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_lurka")
+centered = false
+
+[node name="Back2" type="Sprite2D" parent="."]
+position = Vector2(1150, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("2_lurka")
+centered = false
+
 [node name="Player" parent="." instance=ExtResource("1_jedae")]
-position = Vector2(299, 280)
+position = Vector2(96, 472)
 scale = Vector2(2, 2)
+collision_layer = 2
+collision_mask = 5
+
+[node name="Wall" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(-281, 368)
+shape = SubResource("RectangleShape2D_hey54")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall"]
+position = Vector2(2568, 392)
+shape = SubResource("RectangleShape2D_hey54")
