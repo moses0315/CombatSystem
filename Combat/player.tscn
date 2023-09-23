@@ -1,7 +1,8 @@
-[gd_scene load_steps=47 format=3 uid="uid://wfufadg3krmj"]
+[gd_scene load_steps=61 format=3 uid="uid://wfufadg3krmj"]
 
 [ext_resource type="Script" path="res://Combat/player.gd" id="1_2258w"]
 [ext_resource type="Texture2D" uid="uid://bkxyhk87vn8d" path="res://Assets/Player/_AttackCombo2hit.png" id="2_l0ron"]
+[ext_resource type="Texture2D" uid="uid://cnbixmb0i3tia" path="res://Assets/Player/_Death.png" id="3_hbnwk"]
 [ext_resource type="Texture2D" uid="uid://bxluujftg2sji" path="res://Assets/Player/_Hit.png" id="3_xcwb7"]
 [ext_resource type="Texture2D" uid="uid://b4rv1mei1ol3e" path="res://Assets/Player/_Idle.png" id="4_gdflg"]
 [ext_resource type="Texture2D" uid="uid://b4qa1hklwr2uy" path="res://Assets/Player/_Run.png" id="5_pfc0w"]
@@ -186,11 +187,68 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
+[sub_resource type="Animation" id="Animation_4lrl5"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_x7n8y"]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hit"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ioxmi"]
 _data = {
 "RESET": SubResource("Animation_kk3se"),
 "attack1": SubResource("Animation_ciaf4"),
 "attack2": SubResource("Animation_maipo"),
+"death": SubResource("Animation_4lrl5"),
+"hit": SubResource("Animation_x7n8y"),
 "idle": SubResource("Animation_hodvn"),
 "run": SubResource("Animation_0gkr7")
 }
@@ -233,6 +291,46 @@ region = Rect2(960, 0, 120, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4pt1j"]
 atlas = ExtResource("2_l0ron")
+region = Rect2(1080, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_548qi"]
+atlas = ExtResource("3_hbnwk")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_080bp"]
+atlas = ExtResource("3_hbnwk")
+region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ti216"]
+atlas = ExtResource("3_hbnwk")
+region = Rect2(240, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exkv6"]
+atlas = ExtResource("3_hbnwk")
+region = Rect2(360, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glxc2"]
+atlas = ExtResource("3_hbnwk")
+region = Rect2(480, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0punf"]
+atlas = ExtResource("3_hbnwk")
+region = Rect2(600, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bwbb"]
+atlas = ExtResource("3_hbnwk")
+region = Rect2(720, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhpmt"]
+atlas = ExtResource("3_hbnwk")
+region = Rect2(840, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gntac"]
+atlas = ExtResource("3_hbnwk")
+region = Rect2(960, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adard"]
+atlas = ExtResource("3_hbnwk")
 region = Rect2(1080, 0, 120, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eyy3m"]
@@ -363,6 +461,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_548qi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_080bp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ti216")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exkv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glxc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0punf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bwbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhpmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gntac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adard")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_eyy3m")
 }],
 "loop": true,
@@ -441,7 +574,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5sy2"]
-size = Vector2(42.6667, 37.3333)
+size = Vector2(25, 37.3333)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vs4pb"]
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(3, 3)
@@ -461,9 +596,15 @@ shape = SubResource("RectangleShape2D_alwf2")
 
 [node name="BackstepCooldownTimer" type="Timer" parent="."]
 wait_time = 0.15
+one_shot = true
 
 [node name="BackstepTimer" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -482,12 +623,25 @@ collision_layer = 128
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(25, 0)
+position = Vector2(33.8333, 0)
 shape = SubResource("RectangleShape2D_y5sy2")
 script = ExtResource("6_ybt7o")
 facing_left_position = Vector2(-25, 0)
 facing_right_position = Vector2(25, 0)
 
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(0, 1, 0, 0.760784)
+offset_left = -16.0
+offset_top = 18.6667
+offset_right = 131.0
+offset_bottom = 31.6667
+scale = Vector2(0.2, 0.2)
+theme_override_styles/background = SubResource("StyleBoxFlat_vs4pb")
+max_value = 200.0
+show_percentage = false
+
 [connection signal="timeout" from="BackstepCooldownTimer" to="." method="_on_backstep_cooldown_timer_timeout"]
 [connection signal="timeout" from="BackstepTimer" to="." method="_on_backstep_timer_timeout"]
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

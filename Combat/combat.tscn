@@ -10,11 +10,13 @@ size = Vector2(509, 1016)
 [node name="Combat" type="Node2D"]
 
 [node name="Back" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
 scale = Vector2(3, 3)
 texture = ExtResource("1_61lqm")
 centered = false
 
 [node name="Back2" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
 position = Vector2(1150, 0)
 scale = Vector2(3, 3)
 texture = ExtResource("1_61lqm")
