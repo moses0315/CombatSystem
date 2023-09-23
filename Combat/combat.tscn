@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpvx5dtqgyxr0"]
 
-[ext_resource type="PackedScene" uid="uid://wfufadg3krmj" path="res://player.tscn" id="1_jedae"]
-[ext_resource type="Texture2D" uid="uid://bb8betedfjl0u" path="res://Assets/Backcground/back.png" id="2_lurka"]
-[ext_resource type="PackedScene" uid="uid://dcksprsjtjgq0" path="res://enemy.tscn" id="3_vh55l"]
+[ext_resource type="Texture2D" uid="uid://bb8betedfjl0u" path="res://Assets/Backcground/back.png" id="1_61lqm"]
+[ext_resource type="PackedScene" uid="uid://wfufadg3krmj" path="res://Combat/player.tscn" id="2_x76vy"]
+[ext_resource type="PackedScene" uid="uid://dcksprsjtjgq0" path="res://Combat/enemy.tscn" id="3_o46l6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hey54"]
 size = Vector2(509, 1016)
@@ -11,16 +11,16 @@ size = Vector2(509, 1016)
 
 [node name="Back" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
-texture = ExtResource("2_lurka")
+texture = ExtResource("1_61lqm")
 centered = false
 
 [node name="Back2" type="Sprite2D" parent="."]
 position = Vector2(1150, 0)
 scale = Vector2(3, 3)
-texture = ExtResource("2_lurka")
+texture = ExtResource("1_61lqm")
 centered = false
 
-[node name="Player" parent="." instance=ExtResource("1_jedae")]
+[node name="Player" parent="." instance=ExtResource("2_x76vy")]
 position = Vector2(96, 340)
 scale = Vector2(2, 2)
 
@@ -35,6 +35,8 @@ shape = SubResource("RectangleShape2D_hey54")
 position = Vector2(2568, 392)
 shape = SubResource("RectangleShape2D_hey54")
 
-[node name="Enemy" parent="." instance=ExtResource("3_vh55l")]
-position = Vector2(384, 328)
-scale = Vector2(2, 2)
+[node name="Enemy" parent="." instance=ExtResource("3_o46l6")]
+position = Vector2(352, 328)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_o46l6")]
+position = Vector2(528, 328)
