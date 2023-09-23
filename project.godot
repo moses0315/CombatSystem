@@ -24,6 +24,7 @@ window/stretch/mode="canvas_items"
 2d_physics/layer_1="Wall"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
+2d_physics/layer_8="Area"
 
 [rendering]
 
