@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhh6t0a2uc0nq"]
+
+[ext_resource type="Script" path="res://Combat/doors.gd" id="1_07518"]
+[ext_resource type="PackedScene" uid="uid://c7n2cpfh5oilf" path="res://Combat/door.tscn" id="2_5cjvy"]
+
+[node name="ThreeDoors" type="Node2D"]
+script = ExtResource("1_07518")
+
+[node name="Door1" parent="." instance=ExtResource("2_5cjvy")]
+position = Vector2(288, 72)
+
+[node name="Door2" parent="." instance=ExtResource("2_5cjvy")]
+position = Vector2(376, 72)
+
+[node name="Door3" parent="." instance=ExtResource("2_5cjvy")]
+position = Vector2(464, 72)

@@ -1,13 +1,19 @@
 extends CharacterBody2D
 
-const SPEED = 100
+class_name Enemy
+
+var friend = false
+var SPEED = 100
 var player_chase = false
 var player = null
 
-var health = 20
-var attack_power = 10
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")+1000
+
+var health = 100
+var enemy_attack_power = 10
 var is_hurt = false
 var is_attacking = false
+var attack_ready = false
 
 @onready var anim = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
@@ -16,21 +22,44 @@ var is_attacking = false
 
 @onready var attack_cooldown_timer = $AttackCooldownTimer
 
+func _ready():
+	if friend:
+		set_collision_layer_value(2, true)
+		$PlayerDetectionArea.set_collision_mask_value(3, true)
+		$AttackDetectionArea.set_collision_mask_value(3, true)
+		$AttackArea.set_collision_mask_value(3, true)
+	else:
+		set_collision_layer_value(3, true)
+		$PlayerDetectionArea.set_collision_mask_value(2, true)
+		$AttackDetectionArea.set_collision_mask_value(2, true)
+		$AttackArea.set_collision_mask_value(2, true)
+
+	$AttackArea/CollisionShape2D.disabled = true
+	
 func _physics_process(delta):
 	#Health Bar
 	healthbar.value = health
 		
 	#Move
-	if player_chase and not is_hurt and not is_attacking:
-		var direction = (player.position - position).normalized()
-		if direction.x > 0:
-			$AnimatedSprite2D.flip_h = false
-		else:
-			$AnimatedSprite2D.flip_h = true
-		velocity.x = direction.x * SPEED
-		attack()
-	elif is_attacking or is_hurt:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		move_and_slide()
+		return
+		
+	if friend:
+		pass
+		
+	else:
+		if player_chase and not is_hurt and not is_attacking:
+			var direction = (player.position - position).normalized()
+			if direction.x > 0:
+				$AnimatedSprite2D.flip_h = false
+			else:
+				$AnimatedSprite2D.flip_h = true
+			velocity.x = direction.x * SPEED
+			attack()
+		elif is_attacking or is_hurt:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 
 func _on_player_detection_area_body_entered(body):
@@ -38,13 +67,10 @@ func _on_player_detection_area_body_entered(body):
 	player_chase = true
 
 func attack():
-	if Input.is_action_just_pressed("attack"):#-> 캐릭터가 어택디텍트 에어리아 들어오면 
+	if attack_ready:
 		is_attacking = true
 		attack_cooldown_timer.start()
-		if sprite.flip_h == true:
-			anim.play("attack1")
-		else:
-			anim.play("attack1")
+		anim.play("attack1")
 			
 func take_damage(attack_power):
 	health -= attack_power
@@ -62,8 +88,14 @@ func _on_animation_player_animation_finished(anim_name = "hit"):
 	anim.play("idle")
 	
 func _on_attack_detection_area_body_entered(body):
-	body.take_damage(attack_power)
+	attack_ready = true
 
+func _on_attack_detection_area_body_exited(body):
+	attack_ready =false
+	
+func _on_attack_area_body_entered(body):
+	body.take_damage(enemy_attack_power)
 
 func _on_attack_cooldown_timer_timeout():
 	is_attacking = false
+

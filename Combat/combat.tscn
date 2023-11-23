@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpvx5dtqgyxr0"]
+[gd_scene load_steps=7 format=3 uid="uid://dpvx5dtqgyxr0"]
 
 [ext_resource type="Texture2D" uid="uid://bb8betedfjl0u" path="res://Assets/Backcground/back.png" id="1_61lqm"]
 [ext_resource type="PackedScene" uid="uid://wfufadg3krmj" path="res://Combat/player.tscn" id="2_x76vy"]
-[ext_resource type="PackedScene" uid="uid://dcksprsjtjgq0" path="res://Combat/enemy.tscn" id="3_o46l6"]
+[ext_resource type="PackedScene" uid="uid://bhh6t0a2uc0nq" path="res://Combat/three_doors.tscn" id="3_bvjdj"]
+[ext_resource type="Script" path="res://Combat/NPCs.gd" id="3_khaqe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hey54"]
 size = Vector2(509, 1016)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phr7p"]
+size = Vector2(374.509, 150)
 
 [node name="Combat" type="Node2D"]
 
@@ -15,30 +19,75 @@ scale = Vector2(3, 3)
 texture = ExtResource("1_61lqm")
 centered = false
 
-[node name="Back2" type="Sprite2D" parent="."]
+[node name="Back1" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(1150, 0)
 scale = Vector2(3, 3)
 texture = ExtResource("1_61lqm")
 centered = false
 
-[node name="Player" parent="." instance=ExtResource("2_x76vy")]
-position = Vector2(96, 340)
-scale = Vector2(2, 2)
-
 [node name="Wall" type="StaticBody2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
-position = Vector2(-281, 368)
+position = Vector2(-264, 368)
 shape = SubResource("RectangleShape2D_hey54")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall"]
 position = Vector2(2568, 392)
 shape = SubResource("RectangleShape2D_hey54")
 
-[node name="Enemy" parent="." instance=ExtResource("3_o46l6")]
-position = Vector2(352, 328)
+[node name="NPCs" type="Node2D" parent="."]
+script = ExtResource("3_khaqe")
 
-[node name="Enemy2" parent="." instance=ExtResource("3_o46l6")]
-position = Vector2(528, 328)
+[node name="Enemies" type="Node" parent="NPCs"]
+
+[node name="ThreeDoors" parent="NPCs" instance=ExtResource("3_bvjdj")]
+
+[node name="ThreeDoors2" parent="NPCs" instance=ExtResource("3_bvjdj")]
+position = Vector2(400, 0)
+
+[node name="ThreeDoors3" parent="NPCs" instance=ExtResource("3_bvjdj")]
+position = Vector2(800, 0)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(1151.44, 150)
+scale = Vector2(6.625, 0.1)
+shape = SubResource("RectangleShape2D_phr7p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor/CollisionShape2D"]
+position = Vector2(3.70755, 0)
+texture = ExtResource("1_61lqm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor"]
+position = Vector2(1151.44, 300)
+scale = Vector2(6.625, 0.1)
+shape = SubResource("RectangleShape2D_phr7p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor/CollisionShape2D2"]
+position = Vector2(3.70755, 0)
+texture = ExtResource("1_61lqm")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor"]
+position = Vector2(1151.44, 450)
+scale = Vector2(6.625, 0.1)
+shape = SubResource("RectangleShape2D_phr7p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor/CollisionShape2D3"]
+position = Vector2(3.70755, 0)
+texture = ExtResource("1_61lqm")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Floor"]
+position = Vector2(1151.44, 600)
+scale = Vector2(6.625, 0.1)
+shape = SubResource("RectangleShape2D_phr7p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor/CollisionShape2D4"]
+position = Vector2(3.70755, 0)
+texture = ExtResource("1_61lqm")
+
+[node name="Player" parent="." instance=ExtResource("2_x76vy")]
+position = Vector2(96, 100)
+scale = Vector2(2, 2)
