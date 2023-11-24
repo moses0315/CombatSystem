@@ -90,9 +90,6 @@ func _on_enemy_detection_area_body_entered(body):
 	enemy = body
 	enemy_chase = true
 	
-func _on_enemy_detection_area_body_exited(body):
-	pass # Replace with function body.
-
 	
 func _on_animation_enemy_animation_finished(anim_name = "hit"):
 	is_hurt = false
