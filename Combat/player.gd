@@ -13,17 +13,23 @@ var player_attack_power = 10
 
 var attack_stat = 0
 
+@export var facing_left_position : Vector2
+@export var facing_right_position : Vector2
+
 @onready var anim = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
-
 @onready var attack_cooldown_timer = $AttackCooldownTimer
-
 @onready var healthbar = $Healthbar
 
 func _ready():
 	$AttackArea/CollisionShape2D.disabled = true
 	
 func _physics_process(delta):
+	if $AnimatedSprite2D.flip_h == true:
+		$AttackArea/CollisionShape2D.position = facing_left_position
+	else:
+		$AttackArea/CollisionShape2D.position = facing_right_position
+		
 	healthbar.value = health
 	
 	if is_dead:

@@ -1,12 +1,11 @@
-[gd_scene load_steps=65 format=3 uid="uid://wfufadg3krmj"]
+[gd_scene load_steps=64 format=3 uid="uid://wfufadg3krmj"]
 
-[ext_resource type="Script" path="res://Combat/player.gd" id="1_2258w"]
+[ext_resource type="Script" path="res://Combat/Player.gd" id="1_2258w"]
 [ext_resource type="Texture2D" uid="uid://bkxyhk87vn8d" path="res://Assets/Player/_AttackCombo2hit.png" id="2_l0ron"]
 [ext_resource type="Texture2D" uid="uid://cnbixmb0i3tia" path="res://Assets/Player/_Death.png" id="3_hbnwk"]
 [ext_resource type="Texture2D" uid="uid://bxluujftg2sji" path="res://Assets/Player/_Hit.png" id="3_xcwb7"]
 [ext_resource type="Texture2D" uid="uid://b4rv1mei1ol3e" path="res://Assets/Player/_Idle.png" id="4_gdflg"]
 [ext_resource type="Texture2D" uid="uid://b4qa1hklwr2uy" path="res://Assets/Player/_Run.png" id="5_pfc0w"]
-[ext_resource type="Script" path="res://Combat/player_facing.gd" id="6_ybt7o"]
 [ext_resource type="Texture2D" uid="uid://dolffd1jcbgbo" path="res://Assets/HealthBar/under.png" id="8_ta1yf"]
 [ext_resource type="Texture2D" uid="uid://c7bqpb4kggroa" path="res://Assets/HealthBar/progress.png" id="10_56wi7"]
 
@@ -727,6 +726,8 @@ size = Vector2(5, 37.3333)
 scale = Vector2(3, 3)
 collision_layer = 2
 script = ExtResource("1_2258w")
+facing_left_position = Vector2(-26, 0)
+facing_right_position = Vector2(26, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
@@ -761,9 +762,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(24.6667, 0)
 shape = SubResource("RectangleShape2D_y5sy2")
-script = ExtResource("6_ybt7o")
-facing_left_position = Vector2(-26, 0)
-facing_right_position = Vector2(26, 0)
 
 [node name="Healthbar" type="TextureProgressBar" parent="."]
 offset_left = -16.0

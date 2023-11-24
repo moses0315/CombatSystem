@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://mcs8e7b6p6ve"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_f67r8"]
+[ext_resource type="Script" path="res://Main.gd" id="1_cnre8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gt6bj"]
 
@@ -13,7 +13,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r82ee"]
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_f67r8")
+script = ExtResource("1_cnre8")
 
 [node name="Combat" type="Button" parent="."]
 offset_left = 32.0
