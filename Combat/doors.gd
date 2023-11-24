@@ -1,36 +1,27 @@
 extends Node2D
 
-@onready var door1 = $Door1/Area2D/CollisionShape2D
-@onready var door2 = $Door2/Area2D/CollisionShape2D
-@onready var door3 = $Door3/Area2D/CollisionShape2D
-var create_position
+@onready var doorarray = [$Door1/Area2D/CollisionShape2D,$Door2/Area2D/CollisionShape2D,$Door3/Area2D/CollisionShape2D]
+
+@onready var create_position1 = self.position+$Door1.position
+@onready var create_position2= self.position+$Door2.position
+@onready var create_position3 = self.position+$Door3.position
+
 var doors_open = false
 var doors_once_open = false
+var door_num
+var num = 1
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if not doors_once_open:
-		if door1.is_open:
-			create_position = self.position+$Door1.position
-			doors_open = true
-			door1.is_open = false
-			doors_once_open = true
-			$Door1.queue_free()
-			$Door2.queue_free()
-			$Door3.queue_free()
-		elif door2.is_open:
-			create_position = self.position+$Door2.position
-			doors_open = true
-			door2.is_open = false
-			doors_once_open = true
-			$Door1.queue_free()
-			$Door2.queue_free()
-			$Door3.queue_free()
-		elif door3.is_open:
-			create_position =self.position+ $Door3.position
-			doors_open = true
-			door3.is_open = false
-			doors_once_open = true
-			$Door1.queue_free()
-			$Door2.queue_free()
-			$Door3.queue_free()
+		for door in doorarray:
+			if door.is_open:
+				door_num = num
+				doors_open = true
+				door.is_open = false
+				doors_once_open = true
+				$Door1.queue_free()
+				$Door2.queue_free()
+				$Door3.queue_free()
+			num += 1
+		num = 1
 	
