@@ -41,7 +41,7 @@ shape = SubResource("RectangleShape2D_hey54")
 [node name="NPCs" type="Node2D" parent="."]
 script = ExtResource("3_khaqe")
 
-[node name="Enemies" type="Node" parent="NPCs"]
+[node name="NPC" type="Node" parent="NPCs"]
 
 [node name="ThreeDoors" parent="NPCs" instance=ExtResource("3_bvjdj")]
 

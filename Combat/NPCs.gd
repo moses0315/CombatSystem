@@ -24,9 +24,9 @@ func _process(delta):
 			elif doors.door_num == 3:
 				knight_instance3.friend = true	
 
-			$Enemies.add_child(knight_instance1)	
-			$Enemies.add_child(knight_instance2)
-			$Enemies.add_child(knight_instance3)	
+			$NPC.add_child(knight_instance1)	
+			$NPC.add_child(knight_instance2)
+			$NPC.add_child(knight_instance3)	
 		
 			doors.doors_open = false
 		

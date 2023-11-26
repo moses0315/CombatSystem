@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://ciotvvhl257rt"]
+
+[ext_resource type="Script" path="res://Combat/Soldier.gd" id="1_ceqk6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0rtw4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8eyop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygxcn"]
+size = Vector2(795, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymy43"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8emr"]
+size = Vector2(77, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qo0qq"]
+size = Vector2(34.25, 40)
+
+[node name="Soldier" type="CharacterBody2D"]
+script = ExtResource("1_ceqk6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0rtw4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8eyop")
+
+[node name="EnemyDetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
+shape = SubResource("RectangleShape2D_ygxcn")
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(0.670588, 0, 1, 0.647059)
+offset_left = -16.0
+offset_top = 24.5
+offset_right = 197.0
+offset_bottom = 44.5
+scale = Vector2(0.15, 0.15)
+theme_override_styles/fill = SubResource("StyleBoxFlat_ymy43")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="AttackDetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionArea"]
+shape = SubResource("RectangleShape2D_c8emr")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(21.125, 0)
+shape = SubResource("RectangleShape2D_qo0qq")
+disabled = true
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
+[connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
+[connection signal="body_entered" from="AttackDetectionArea" to="." method="_on_attack_detection_area_body_entered"]
+[connection signal="body_exited" from="AttackDetectionArea" to="." method="_on_attack_detection_area_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]

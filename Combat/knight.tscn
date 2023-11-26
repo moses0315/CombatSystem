@@ -504,7 +504,7 @@ shape = SubResource("RectangleShape2D_wpawc")
 disabled = true
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 0.5
 one_shot = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_enemy_animation_finished"]
