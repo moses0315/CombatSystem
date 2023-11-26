@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpvx5dtqgyxr0"]
+[gd_scene load_steps=8 format=3 uid="uid://dpvx5dtqgyxr0"]
 
 [ext_resource type="Texture2D" uid="uid://bb8betedfjl0u" path="res://Assets/Backcground/back.png" id="1_61lqm"]
 [ext_resource type="PackedScene" uid="uid://wfufadg3krmj" path="res://Combat/player.tscn" id="2_x76vy"]
 [ext_resource type="PackedScene" uid="uid://bhh6t0a2uc0nq" path="res://Combat/three_doors.tscn" id="3_bvjdj"]
 [ext_resource type="Script" path="res://Combat/NPCs.gd" id="3_khaqe"]
+[ext_resource type="AudioStream" uid="uid://d2rrwdkre8t4i" path="res://Assets/Audio/Candyland.mp3" id="4_iiash"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hey54"]
 size = Vector2(509, 1016)
@@ -49,6 +50,9 @@ position = Vector2(400, 0)
 
 [node name="ThreeDoors3" parent="NPCs" instance=ExtResource("3_bvjdj")]
 position = Vector2(800, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NPCs"]
+stream = ExtResource("4_iiash")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 
