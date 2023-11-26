@@ -1,14 +1,15 @@
 extends CharacterBody2D
 
+class_name Knight
 
 var friend = false
 var SPEED = 100
 var enemy_array = []
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")+1000
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var health = 100
-var knight_attack_power = 10
+var self_attack_power = 10
 var is_hurt = false
 var is_dead = false
 var is_attacking = false
@@ -49,7 +50,7 @@ func _physics_process(delta):
 		
 	#Move
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity
 		move_and_slide()
 		return
 	
@@ -68,7 +69,7 @@ func _physics_process(delta):
 	if !is_hurt and !is_attacking:
 		if enemy_array == []:
 			velocity.x = move_toward(velocity.x, 0, SPEED)#change code to chase player
-		
+			anim.play("idle")
 		elif fixed_target != null:
 			var direction = (fixed_target.position-position).normalized()
 			if direction.x > 0:
@@ -98,6 +99,7 @@ func _physics_process(delta):
 				velocity.x = move_toward(velocity.x, 0, SPEED)
 			else:
 				velocity.x = direction.x * SPEED
+				anim.play("run")
 
 	elif is_hurt or is_attacking or attack_ready:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -128,8 +130,8 @@ func _on_enemy_detection_area_body_entered(body):
 	
 func _on_enemy_detection_area_body_exited(body):
 	enemy_array.erase(body)
-	
-func _on_animation_enemy_animation_finished(anim_name = "hit"):
+
+func _on_animation_knight_animation_finished(anim_name = "hit"):
 	is_hurt = false
 	anim.play("idle")
 	
@@ -145,10 +147,8 @@ func _on_attack_detection_area_body_exited(body):
 		attack_ready = false
 	
 func _on_attack_area_body_entered(body):
-	body.take_damage(knight_attack_power)
+	body.take_damage(self_attack_power)
 
 func _on_attack_cooldown_timer_timeout():
 	is_attacking = false
-
-
 

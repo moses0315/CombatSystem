@@ -465,7 +465,7 @@ libraries = {
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sgtoa")
-animation = &"attack1"
+animation = &"idle"
 autoplay = "idle"
 frame = 1
 
@@ -507,7 +507,7 @@ disabled = true
 wait_time = 0.5
 one_shot = true
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_enemy_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_knight_animation_finished"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
 [connection signal="body_entered" from="AttackDetectionArea" to="." method="_on_attack_detection_area_body_entered"]
