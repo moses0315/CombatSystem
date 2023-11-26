@@ -3,13 +3,13 @@ extends CharacterBody2D
 var bullet = preload("res://Combat/sodierBullet.tscn")
 
 var friend = false
-var SPEED = 100
+var SPEED = 70
 var enemy_array = []
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var health = 100
-var self_attack_power = 10
+var self_attack_power = 5
 var is_hurt = false
 var is_dead = false
 var is_attacking = false
@@ -34,7 +34,6 @@ func _ready():
 
 	
 func _physics_process(delta):
-	print(position)
 	#Health Bar
 	healthbar.value = health
 		
@@ -114,6 +113,7 @@ func attack():
 			bullet_instance.friend = true
 		else:
 			bullet_instance.friend = false
+		bullet_instance.self_attack_power = self_attack_power
 		add_child(bullet_instance)	
 
 			
