@@ -8,12 +8,13 @@ var enemy_array = []
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")+1000
 
 var health = 100
-var knight_attack_power = 1
+var knight_attack_power = 10
 var is_hurt = false
 var is_dead = false
 var is_attacking = false
 var attack_ready = false
 var attack_target_array = []
+var fixed_target = null
 
 @onready var anim = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
@@ -51,11 +52,32 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		move_and_slide()
 		return
-		
-
+	
+	if fixed_target == null and attack_target_array != []:
+		var minimum = 100000000
+		for enemy in attack_target_array:
+			if enemy.position.x-position.x >= 0:
+				if enemy.position.x-position.x < minimum:
+					minimum = enemy.position.x-position.x
+					fixed_target = enemy
+			elif enemy.position.x-position.x <= 0:
+				if (enemy.position.x-position.x)*-1 < minimum:
+					minimum = (enemy.position.x-position.x)*-1
+					fixed_target = enemy
+					
 	if !is_hurt and !is_attacking:
 		if enemy_array == []:
+			velocity.x = move_toward(velocity.x, 0, SPEED)#change code to chase player
+		
+		elif fixed_target != null:
+			var direction = (fixed_target.position-position).normalized()
+			if direction.x > 0:
+				$AnimatedSprite2D.flip_h = false
+			else:
+				$AnimatedSprite2D.flip_h = true	
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+			attack()
+			
 		else:
 			var minimum = 100000000
 			var direction
@@ -76,7 +98,6 @@ func _physics_process(delta):
 				velocity.x = move_toward(velocity.x, 0, SPEED)
 			else:
 				velocity.x = direction.x * SPEED
-			attack()
 
 	elif is_hurt or is_attacking or attack_ready:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -117,9 +138,11 @@ func _on_attack_detection_area_body_entered(body):
 	attack_target_array.append(body)
 
 func _on_attack_detection_area_body_exited(body):
+	if body == fixed_target:
+		fixed_target = null
 	attack_target_array.erase(body)
 	if attack_target_array == []:
-		attack_ready =false
+		attack_ready = false
 	
 func _on_attack_area_body_entered(body):
 	body.take_damage(knight_attack_power)
