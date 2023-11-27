@@ -40,7 +40,7 @@ func _physics_process(delta):
 	#Player Move
 	
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity
 
 	var direction = Input.get_axis("left", "right")
 	if !is_attacking:
@@ -58,7 +58,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, MOVE_SPEED)
 		anim.play("idle")
 	
-	if !is_attacking:
+	if !is_attacking and !is_hurt:
 		attack()	
 		
 	move_and_slide()

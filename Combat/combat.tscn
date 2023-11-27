@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpvx5dtqgyxr0"]
+[gd_scene load_steps=11 format=3 uid="uid://dpvx5dtqgyxr0"]
 
-[ext_resource type="Texture2D" uid="uid://bb8betedfjl0u" path="res://Assets/Backcground/back.png" id="1_61lqm"]
+[ext_resource type="Texture2D" uid="uid://de1x1s4ocgr3i" path="res://Assets/Backcground/Postapocalypce2/Bright/postapocalypse2.png" id="1_7dit6"]
+[ext_resource type="Texture2D" uid="uid://basb25vm74ebi" path="res://Assets/Backcground/Postapocalypce1/Bright/postapocalypse1.png" id="1_jluhn"]
 [ext_resource type="PackedScene" uid="uid://wfufadg3krmj" path="res://Combat/player.tscn" id="2_x76vy"]
 [ext_resource type="PackedScene" uid="uid://bhh6t0a2uc0nq" path="res://Combat/three_doors.tscn" id="3_bvjdj"]
 [ext_resource type="Script" path="res://Combat/NPCs.gd" id="3_khaqe"]
 [ext_resource type="AudioStream" uid="uid://d2rrwdkre8t4i" path="res://Assets/Audio/Candyland.mp3" id="4_iiash"]
 [ext_resource type="PackedScene" uid="uid://ciotvvhl257rt" path="res://Combat/soldier.tscn" id="6_be23j"]
+[ext_resource type="Texture2D" uid="uid://b7vhcxq6n8dm8" path="res://Assets/Backcground/Postapocalypce2/Bright/sky.png" id="8_i027w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hey54"]
 size = Vector2(509, 1016)
@@ -15,18 +17,18 @@ size = Vector2(374.509, 150)
 
 [node name="Combat" type="Node2D"]
 
-[node name="Back" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-scale = Vector2(3, 3)
-texture = ExtResource("1_61lqm")
-centered = false
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576, 309)
+texture = ExtResource("1_7dit6")
+metadata/_edit_lock_ = true
 
-[node name="Back1" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(1150, 0)
-scale = Vector2(3, 3)
-texture = ExtResource("1_61lqm")
-centered = false
+[node name="Background2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1728, 309)
+scale = Vector2(0.6, 0.572222)
+texture = ExtResource("1_jluhn")
+metadata/_edit_lock_ = true
 
 [node name="Wall" type="StaticBody2D" parent="."]
 collision_mask = 0
@@ -67,45 +69,17 @@ stream = ExtResource("4_iiash")
 [node name="Floor" type="StaticBody2D" parent="."]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(1151.44, 150)
-scale = Vector2(6.625, 0.1)
-shape = SubResource("RectangleShape2D_phr7p")
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor/CollisionShape2D"]
-position = Vector2(3.70755, 0)
-texture = ExtResource("1_61lqm")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor"]
-position = Vector2(1151.44, 300)
-scale = Vector2(6.625, 0.1)
-shape = SubResource("RectangleShape2D_phr7p")
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor/CollisionShape2D2"]
-position = Vector2(3.70755, 0)
-texture = ExtResource("1_61lqm")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor"]
-position = Vector2(1151.44, 450)
-scale = Vector2(6.625, 0.1)
-shape = SubResource("RectangleShape2D_phr7p")
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor/CollisionShape2D3"]
-position = Vector2(3.70755, 0)
-texture = ExtResource("1_61lqm")
-
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Floor"]
-position = Vector2(1151.44, 600)
+position = Vector2(1160, 552)
 scale = Vector2(6.625, 0.1)
 shape = SubResource("RectangleShape2D_phr7p")
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor/CollisionShape2D4"]
-position = Vector2(3.70755, 0)
-texture = ExtResource("1_61lqm")
 
 [node name="Player" parent="." instance=ExtResource("2_x76vy")]
-position = Vector2(96, 100)
-scale = Vector2(2, 2)
+position = Vector2(152, 472)
 
 [node name="Soldier" parent="." instance=ExtResource("6_be23j")]
-position = Vector2(496, 88)
+position = Vector2(624, 472)
+
+[node name="Sky" type="Sprite2D" parent="."]
+position = Vector2(672, 352)
+texture = ExtResource("8_i027w")
