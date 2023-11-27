@@ -600,6 +600,7 @@ facing_left_position = Vector2(-26, 0)
 facing_right_position = Vector2(26, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 limit_right = 2300

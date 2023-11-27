@@ -12,17 +12,22 @@ var health = 100
 var self_attack_power = 10
 var is_hurt = false
 var is_dead = false
+
 var is_attacking = false
 var attack_ready = false
 var once_attack = false
 var attack_target_array = []
+var attack_stat = 0
+
 var fixed_target = null
-var target = null
+#var target = null
 
 @onready var anim = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
 @onready var healthbar = $Healthbar
 @onready var attack_cooldown_timer = $AttackCooldownTimer
+
+@export var create_bullet = false
 
 @export var facing_left_position : Vector2
 @export var facing_right_position : Vector2
@@ -49,6 +54,32 @@ func _physics_process(delta):
 		
 	#Health Bar
 	healthbar.value = health
+	
+	if create_bullet:
+		var bullet_instance =  bullet.instantiate()
+		if $AnimatedSprite2D.flip_h == true:#facing left
+			bullet_instance.to_right = false
+			if attack_stat%2 != 0:
+				#anim.play("attack1")
+				bullet_instance.position = Vector2(-22.308, 1.538)
+			else:
+				#anim.play("attack2")
+				bullet_instance.position = Vector2(-33.077, -18.462)
+		else:
+			bullet_instance.to_right = true
+			if attack_stat%2 == 1:#changed
+				#anim.play("attack1")
+				bullet_instance.position = Vector2(22.308, 1.538)
+			else:
+				#anim.play("attack2")
+				bullet_instance.position = Vector2(33.077, -18.462)
+		if friend:
+			bullet_instance.friend = true
+		else:
+			bullet_instance.friend = false
+		#attack_stat += 1
+		add_child(bullet_instance)	
+		create_bullet = false
 		
 	#Move
 	if not is_on_floor():
@@ -110,23 +141,38 @@ func _physics_process(delta):
 
 
 func attack():
-	if attack_ready:
+	if attack_ready and !is_attacking:
 		is_attacking = true
 		attack_cooldown_timer.start()
-		anim.play("attack")
-
-		var bullet_instance =  bullet.instantiate()
-		if $AnimatedSprite2D.flip_h == true:#facing left
-			bullet_instance.to_right = false
-			bullet_instance.position = Vector2(-39, -18)
+		if attack_stat%2 == 0:
+			anim.play("attack1")
 		else:
-			bullet_instance.to_right = true
-			bullet_instance.position = Vector2(39, -18)
-		if friend:
-			bullet_instance.friend = true
-		else:
-			bullet_instance.friend = false
-		add_child(bullet_instance)	
+			anim.play("attack2")
+		attack_stat += 1
+			
+#		var bullet_instance =  bullet.instantiate()
+#		if $AnimatedSprite2D.flip_h == true:#facing left
+#			bullet_instance.to_right = false
+#			if attack_stat%2 == 0:
+#				anim.play("attack1")
+#				bullet_instance.position = Vector2(-22.308, 1.538)
+#			else:
+#				anim.play("attack2")
+#				bullet_instance.position = Vector2(-33.077, -18.462)
+#		else:
+#			bullet_instance.to_right = true
+#			if attack_stat%2 == 0:
+#				anim.play("attack1")
+#				bullet_instance.position = Vector2(22.308, 1.538)
+#			else:
+#				anim.play("attack2")
+#				bullet_instance.position = Vector2(33.077, -18.462)
+#		if friend:
+#			bullet_instance.friend = true
+#		else:
+#			bullet_instance.friend = false
+#		attack_stat += 1
+#		add_child(bullet_instance)	
 
 			
 func take_damage(attack_power):
@@ -169,16 +215,22 @@ func _on_attack_cooldown_timer_timeout():
 
 func _on_attack_area_body_entered(body):
 	if not once_attack:
+		body.take_damage(self_attack_power)
 		once_attack = true
-		var minimum = 100000000
-		if enemy_array != []:
-			for enemy in attack_target_array:
-				if $AnimatedSprite2D.flip_h == false:#facing right
-					if enemy.position.x-position.x < minimum:
-						minimum = enemy.position.x-position.x
-						target = enemy
-				else:
-					if (enemy.position.x-position.x)*-1 < minimum:
-						minimum = (enemy.position.x-position.x)*-1
-						target = enemy
-			target.take_damage(self_attack_power)
+	
+#	if not once_attack:
+#		once_attack = true
+#		var minimum = 100000000
+#		if enemy_array != []:
+#			var target
+#			if $AnimatedSprite2D.flip_h == false:#facing right
+#				for enemy in attack_target_array:
+#					if enemy.position.x-position.x < minimum:
+#						minimum = enemy.position.x-position.x
+#						target = enemy
+#			else:
+#				for enemy in attack_target_array:
+#					if (enemy.position.x-position.x)*-1 < minimum:
+#						minimum = (enemy.position.x-position.x)*-1
+#						target = enemy
+#			target.take_damage(self_attack_power)
