@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://ciotvvhl257rt"]
+[gd_scene load_steps=46 format=3 uid="uid://ciotvvhl257rt"]
 
 [ext_resource type="Script" path="res://Combat/Soldier.gd" id="1_ceqk6"]
 [ext_resource type="Texture2D" uid="uid://d1orwoij5nopt" path="res://Assets/Soldier_1/Shot_2.png" id="2_akga5"]
@@ -11,10 +11,10 @@
 size = Vector2(20, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygxcn"]
-size = Vector2(795, 20)
+size = Vector2(2067.69, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8emr"]
-size = Vector2(320, 32)
+size = Vector2(689.231, 32)
 
 [sub_resource type="Animation" id="Animation_uewn3"]
 resource_name = "idle"
@@ -156,6 +156,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackArea/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_q4pbe"]
@@ -395,6 +407,9 @@ animations = [{
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymy43"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihu2a"]
+size = Vector2(326.154, 12.3077)
+
 [node name="Soldier" type="CharacterBody2D"]
 scale = Vector2(1.3, 1.3)
 collision_layer = 0
@@ -429,6 +444,7 @@ libraries = {
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_0rtw4")
 animation = &"attack"
+autoplay = "idle"
 frame = 1
 
 [node name="Healthbar" type="ProgressBar" parent="."]
@@ -442,9 +458,19 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ymy43")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(181.538, 0)
+shape = SubResource("RectangleShape2D_ihu2a")
+disabled = true
+
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
 [connection signal="body_entered" from="AttackDetectionArea" to="." method="_on_attack_detection_area_body_entered"]
 [connection signal="body_exited" from="AttackDetectionArea" to="." method="_on_attack_detection_area_body_exited"]
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_soldier_animation_finished"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

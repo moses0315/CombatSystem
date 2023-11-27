@@ -17,6 +17,8 @@ var attack_ready = false
 var attack_target_array = []
 var fixed_target = null
 
+var attack_stat = 0
+
 @onready var anim = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
 @onready var healthbar = $Healthbar
@@ -111,7 +113,12 @@ func attack():
 	if attack_ready:
 		is_attacking = true
 		attack_cooldown_timer.start()
-		anim.play("attack1")
+		if attack_stat%2 == 0:
+			anim.play("attack1")
+		else:
+			anim.play("attack2")
+		attack_stat += 1
+		
 			
 func take_damage(attack_power):
 	health -= attack_power

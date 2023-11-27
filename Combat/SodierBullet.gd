@@ -2,7 +2,7 @@ extends Sprite2D
 
 var to_right = false
 var friend = true
-var self_attack_power
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if friend:
@@ -20,6 +20,4 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	if body is CharacterBody2D:
-		body.take_damage(self_attack_power)
 	self.queue_free()

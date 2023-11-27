@@ -8,7 +8,8 @@ var soldier = preload("res://Combat/soldier.tscn")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if 	not $AudioStreamPlayer.playing:
-		$AudioStreamPlayer.play()
+		pass
+		#$AudioStreamPlayer.play()
 		
 	for doors in threeDoors_array:
 		if doors.doors_open:	
