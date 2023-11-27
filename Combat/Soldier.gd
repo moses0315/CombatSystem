@@ -9,7 +9,7 @@ var enemy_array = []
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var health = 100
-var self_attack_power = 5
+var self_attack_power = 10
 var is_hurt = false
 var is_dead = false
 var is_attacking = false

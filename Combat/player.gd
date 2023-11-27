@@ -8,7 +8,8 @@ var is_attacking = false
 var is_hurt = false
 var is_dead = false
 
-var health = 100
+var max_health = 1000
+var health = max_health
 var player_attack_power = 10
 
 var attack_stat = 0
@@ -23,6 +24,7 @@ var attack_stat = 0
 
 func _ready():
 	$AttackArea/CollisionShape2D.disabled = true
+	healthbar.max_value = max_health
 	
 func _physics_process(delta):
 	if $AnimatedSprite2D.flip_h == true:

@@ -20,4 +20,6 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	body.take_damage(self_attack_power)
+	if body is CharacterBody2D:
+		body.take_damage(self_attack_power)
+	self.queue_free()

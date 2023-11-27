@@ -45,12 +45,21 @@ script = ExtResource("3_khaqe")
 [node name="NPC" type="Node" parent="NPCs"]
 
 [node name="ThreeDoors" parent="NPCs" instance=ExtResource("3_bvjdj")]
+character_name1 = "soldier"
+character_name2 = "knight"
+character_name3 = "knight"
 
 [node name="ThreeDoors2" parent="NPCs" instance=ExtResource("3_bvjdj")]
 position = Vector2(400, 0)
+character_name1 = "soldier"
+character_name2 = "soldier"
+character_name3 = "soldier"
 
 [node name="ThreeDoors3" parent="NPCs" instance=ExtResource("3_bvjdj")]
 position = Vector2(800, 0)
+character_name1 = "soldier"
+character_name2 = "soldier"
+character_name3 = "soldier"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NPCs"]
 stream = ExtResource("4_iiash")
@@ -98,4 +107,4 @@ position = Vector2(96, 100)
 scale = Vector2(2, 2)
 
 [node name="Soldier" parent="." instance=ExtResource("6_be23j")]
-position = Vector2(296, 88)
+position = Vector2(224, 96)

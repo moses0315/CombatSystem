@@ -1,5 +1,9 @@
 extends Node2D
 
+@export var character_name1 : String
+@export var character_name2 : String
+@export var character_name3 : String
+
 @onready var doorarray = [$Door1/Area2D/CollisionShape2D,$Door2/Area2D/CollisionShape2D,$Door3/Area2D/CollisionShape2D]
 
 @onready var create_position1 = self.position+$Door1.position
