@@ -20,7 +20,6 @@ var attack_target_array = []
 var attack_stat = 0
 
 var fixed_target = null
-#var target = null
 
 @onready var anim = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
@@ -60,24 +59,19 @@ func _physics_process(delta):
 		if $AnimatedSprite2D.flip_h == true:#facing left
 			bullet_instance.to_right = false
 			if attack_stat%2 != 0:
-				#anim.play("attack1")
 				bullet_instance.position = Vector2(-22.308, 1.538)
 			else:
-				#anim.play("attack2")
 				bullet_instance.position = Vector2(-33.077, -18.462)
 		else:
 			bullet_instance.to_right = true
 			if attack_stat%2 == 1:#changed
-				#anim.play("attack1")
 				bullet_instance.position = Vector2(22.308, 1.538)
 			else:
-				#anim.play("attack2")
 				bullet_instance.position = Vector2(33.077, -18.462)
 		if friend:
 			bullet_instance.friend = true
 		else:
 			bullet_instance.friend = false
-		#attack_stat += 1
 		add_child(bullet_instance)	
 		create_bullet = false
 		
@@ -87,7 +81,7 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 	
-	if fixed_target == null and attack_target_array != []:
+	if attack_target_array != []:
 		var minimum = 100000000
 		for enemy in attack_target_array:
 			if enemy.position.x-position.x >= 0:
@@ -149,32 +143,8 @@ func attack():
 		else:
 			anim.play("attack2")
 		attack_stat += 1
-			
-#		var bullet_instance =  bullet.instantiate()
-#		if $AnimatedSprite2D.flip_h == true:#facing left
-#			bullet_instance.to_right = false
-#			if attack_stat%2 == 0:
-#				anim.play("attack1")
-#				bullet_instance.position = Vector2(-22.308, 1.538)
-#			else:
-#				anim.play("attack2")
-#				bullet_instance.position = Vector2(-33.077, -18.462)
-#		else:
-#			bullet_instance.to_right = true
-#			if attack_stat%2 == 0:
-#				anim.play("attack1")
-#				bullet_instance.position = Vector2(22.308, 1.538)
-#			else:
-#				anim.play("attack2")
-#				bullet_instance.position = Vector2(33.077, -18.462)
-#		if friend:
-#			bullet_instance.friend = true
-#		else:
-#			bullet_instance.friend = false
-#		attack_stat += 1
-#		add_child(bullet_instance)	
 
-			
+
 func take_damage(attack_power):
 	health -= attack_power
 	is_hurt = true
@@ -214,23 +184,6 @@ func _on_attack_cooldown_timer_timeout():
 	once_attack = false
 
 func _on_attack_area_body_entered(body):
-	if not once_attack:
-		body.take_damage(self_attack_power)
+	if not once_attack and fixed_target != null:
+		fixed_target.take_damage(self_attack_power)
 		once_attack = true
-	
-#	if not once_attack:
-#		once_attack = true
-#		var minimum = 100000000
-#		if enemy_array != []:
-#			var target
-#			if $AnimatedSprite2D.flip_h == false:#facing right
-#				for enemy in attack_target_array:
-#					if enemy.position.x-position.x < minimum:
-#						minimum = enemy.position.x-position.x
-#						target = enemy
-#			else:
-#				for enemy in attack_target_array:
-#					if (enemy.position.x-position.x)*-1 < minimum:
-#						minimum = (enemy.position.x-position.x)*-1
-#						target = enemy
-#			target.take_damage(self_attack_power)

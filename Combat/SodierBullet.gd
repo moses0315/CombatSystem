@@ -14,9 +14,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if to_right:
-		position.x += 1000*delta
+		position.x += 5000*delta
 	else:
-		position.x -= 1000*delta
+		position.x -= 5000*delta
 
 
 func _on_area_2d_body_entered(body):

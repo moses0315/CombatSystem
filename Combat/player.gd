@@ -83,6 +83,7 @@ func take_damage(attack_power):
 			await anim.animation_finished
 		else:
 			anim.play("hit")
+			
 
 func _on_attack_cooldown_timer_timeout():
 	is_attacking = false

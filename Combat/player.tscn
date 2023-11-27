@@ -596,8 +596,8 @@ size = Vector2(5, 37.3333)
 scale = Vector2(3, 3)
 collision_layer = 2
 script = ExtResource("1_2258w")
-facing_left_position = Vector2(-26, 0)
-facing_right_position = Vector2(26, 0)
+facing_left_position = Vector2(-24.667, 0)
+facing_right_position = Vector2(24.667, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
