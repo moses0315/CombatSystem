@@ -7,10 +7,10 @@
 script = ExtResource("1_81mgm")
 
 [node name="Door1" parent="." instance=ExtResource("2_5cjvy")]
-position = Vector2(288, 72)
+position = Vector2(36, 64)
 
 [node name="Door2" parent="." instance=ExtResource("2_5cjvy")]
-position = Vector2(376, 72)
+position = Vector2(124, 64)
 
 [node name="Door3" parent="." instance=ExtResource("2_5cjvy")]
-position = Vector2(464, 72)
+position = Vector2(212, 64)

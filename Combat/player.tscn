@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://wfufadg3krmj"]
+[gd_scene load_steps=62 format=3 uid="uid://wfufadg3krmj"]
 
 [ext_resource type="Script" path="res://Combat/Player.gd" id="1_2258w"]
 [ext_resource type="Texture2D" uid="uid://bkxyhk87vn8d" path="res://Assets/Player/_AttackCombo2hit.png" id="2_l0ron"]
@@ -587,7 +587,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5sy2"]
 size = Vector2(38.6667, 37.3333)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hjn0"]
+bg_color = Color(1, 1, 1, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8k2jl"]
+bg_color = Color(1, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5olno"]
 size = Vector2(5, 37.3333)
@@ -600,8 +604,6 @@ facing_left_position = Vector2(-24.667, 0)
 facing_right_position = Vector2(24.667, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(3, 3)
-zoom = Vector2(1.05, 1.05)
 limit_left = 0
 limit_top = 0
 limit_right = 2300
@@ -636,14 +638,14 @@ position = Vector2(24.6667, 0)
 shape = SubResource("RectangleShape2D_y5sy2")
 
 [node name="Healthbar" type="ProgressBar" parent="."]
-modulate = Color(0, 1, 0, 1)
-offset_left = -16.0
-offset_top = 18.6667
-offset_right = 134.0
-offset_bottom = 33.6667
+offset_left = -13.0
+offset_top = 19.0
+offset_right = 117.0
+offset_bottom = 34.0
 scale = Vector2(0.2, 0.2)
+theme_override_styles/background = SubResource("StyleBoxFlat_7hjn0")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8k2jl")
-value = 100.0
+value = 50.0
 show_percentage = false
 
 [node name="DoorDetectArea" type="Area2D" parent="."]

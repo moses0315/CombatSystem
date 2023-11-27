@@ -46,6 +46,8 @@ func _ready():
 	$AttackArea/CollisionShape2D.disabled = true
 	
 func _physics_process(delta):
+	if $AttackArea/CollisionShape2D.disabled == false:
+		print("a")
 	if $AnimatedSprite2D.flip_h == true:
 		$AttackArea/CollisionShape2D.position = facing_left_position
 	else:
@@ -146,6 +148,7 @@ func attack():
 
 
 func take_damage(attack_power):
+	$AttackArea/CollisionShape2D.disabled = true
 	health -= attack_power
 	is_hurt = true
 	if health <= 0:
@@ -184,6 +187,8 @@ func _on_attack_cooldown_timer_timeout():
 	once_attack = false
 
 func _on_attack_area_body_entered(body):
+	print(1)
 	if not once_attack and fixed_target != null:
 		fixed_target.take_damage(self_attack_power)
 		once_attack = true
+		print(0)

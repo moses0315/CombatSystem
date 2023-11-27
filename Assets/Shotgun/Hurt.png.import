@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnlt2gkx58qk"
-path="res://.godot/imported/Attack.png-bc5b587c5b06d00cd31feb8d863d41cd.ctex"
+uid="uid://dlay13jlpchex"
+path="res://.godot/imported/Hurt.png-e4a23d658807f6a1e561a031b3e69fd9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Soldier_1/Attack.png"
-dest_files=["res://.godot/imported/Attack.png-bc5b587c5b06d00cd31feb8d863d41cd.ctex"]
+source_file="res://Assets/Shotgun/Hurt.png"
+dest_files=["res://.godot/imported/Hurt.png-e4a23d658807f6a1e561a031b3e69fd9.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlay13jlpchex"
-path="res://.godot/imported/Hurt.png-30a91d1ca26115f8f094d0ee2421e13a.ctex"
+uid="uid://b8j67jh7cunxb"
+path="res://.godot/imported/Dead.png-d8357f345cd3aa89e8bb9bb037439ce5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shotgun/Hurt.png"
-dest_files=["res://.godot/imported/Hurt.png-30a91d1ca26115f8f094d0ee2421e13a.ctex"]
+source_file="res://Assets/Shotgun/Dead.png"
+dest_files=["res://.godot/imported/Dead.png-d8357f345cd3aa89e8bb9bb037439ce5.ctex"]
 
 [params]
 

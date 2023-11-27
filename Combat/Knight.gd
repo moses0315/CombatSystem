@@ -121,6 +121,7 @@ func attack():
 		
 			
 func take_damage(attack_power):
+	$AttackArea/CollisionShape2D.disabled = true
 	health -= attack_power
 	is_hurt = true
 	if health <= 0:

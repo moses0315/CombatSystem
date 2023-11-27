@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://ciotvvhl257rt"]
+[gd_scene load_steps=55 format=3 uid="uid://ciotvvhl257rt"]
 
 [ext_resource type="Script" path="res://Combat/Soldier.gd" id="1_ceqk6"]
 [ext_resource type="Texture2D" uid="uid://cew1otm5jcmnb" path="res://Assets/Rifle/Shot_1.png" id="2_hdm7o"]
@@ -46,7 +46,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_k8g1v"]
 resource_name = "attack1"
-length = 1.1
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -78,14 +78,14 @@ tracks/2/path = NodePath("AttackArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false, true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("AnimationPlayer:speed_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -110,7 +110,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_i1kmo"]
 resource_name = "attack2"
-length = 1.1
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -142,10 +142,10 @@ tracks/2/path = NodePath("AttackArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false, true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -161,7 +161,7 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/path = NodePath("AnimationPlayer:speed_scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
@@ -566,7 +566,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imybp"]
+bg_color = Color(1, 1, 1, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymy43"]
+bg_color = Color(0, 0, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihu2a"]
 size = Vector2(332.846, 12.3077)
@@ -596,6 +600,7 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_c8emr")
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -611,12 +616,12 @@ autoplay = "idle"
 frame = 1
 
 [node name="Healthbar" type="ProgressBar" parent="."]
-modulate = Color(0.670588, 0, 1, 0.647059)
 offset_left = -16.0
 offset_top = 32.0
 offset_right = 184.0
 offset_bottom = 62.0
 scale = Vector2(0.15, 0.15)
+theme_override_styles/background = SubResource("StyleBoxFlat_imybp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ymy43")
 show_percentage = false
 metadata/_edit_use_anchors_ = true

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Combat/SodierBullet.gd" id="2_8xqhs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fydj3"]
-size = Vector2(3.5, 1)
+size = Vector2(2.70755, 1)
 
 [node name="SoldierBullet" type="Sprite2D"]
 scale = Vector2(0.8, 1)
@@ -15,7 +15,7 @@ script = ExtResource("2_8xqhs")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.71875, 0)
+position = Vector2(-2.38419e-07, 0)
 scale = Vector2(4.73214, 1)
 shape = SubResource("RectangleShape2D_fydj3")
 

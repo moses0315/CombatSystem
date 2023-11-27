@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbj06d5bmsyxg"
-path="res://.godot/imported/Recharge.png-d656c7abf9968d2889465dcacd63102a.ctex"
+uid="uid://bf0sab26kuc06"
+path="res://.godot/imported/Jump.png-c38460b9aa104ba6e8389bba5dff4b4f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shotgun/Recharge.png"
-dest_files=["res://.godot/imported/Recharge.png-d656c7abf9968d2889465dcacd63102a.ctex"]
+source_file="res://Assets/Shotgun/Jump.png"
+dest_files=["res://.godot/imported/Jump.png-c38460b9aa104ba6e8389bba5dff4b4f.ctex"]
 
 [params]
 
