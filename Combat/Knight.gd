@@ -8,7 +8,8 @@ var enemy_array = []
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var health = 100
+var max_health = 100
+var health = max_health
 var self_attack_power = 10
 var is_hurt = false
 var is_dead = false
@@ -33,12 +34,16 @@ func _ready():
 		$EnemyDetectionArea.set_collision_mask_value(3, true)
 		$AttackDetectionArea.set_collision_mask_value(3, true)
 		$AttackArea.set_collision_mask_value(3, true)
+		healthbar = $FriendHealthbar
+		$EnemyHealthbar.queue_free()
 	else:
 		set_collision_layer_value(3, true)
 		$EnemyDetectionArea.set_collision_mask_value(2, true)
 		$AttackDetectionArea.set_collision_mask_value(2, true)
 		$AttackArea.set_collision_mask_value(2, true)
-
+		healthbar = $EnemyHealthbar
+		$FriendHealthbar.queue_free()
+	healthbar.max_value = max_health
 	$AttackArea/CollisionShape2D.disabled = true
 	
 func _physics_process(delta):

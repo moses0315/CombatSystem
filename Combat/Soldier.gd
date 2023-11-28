@@ -8,7 +8,8 @@ var enemy_array = []
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var health = 100
+var max_health = 100
+var health = max_health
 var self_attack_power = 10
 var is_hurt = false
 var is_dead = false
@@ -18,12 +19,12 @@ var attack_ready = false
 var once_attack = false
 var attack_target_array = []
 var attack_stat = 0
-
 var fixed_target = null
+
+var healthbar
 
 @onready var anim = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
-@onready var healthbar = $Healthbar
 @onready var attack_cooldown_timer = $AttackCooldownTimer
 
 @export var create_bullet = false
@@ -37,17 +38,19 @@ func _ready():
 		$EnemyDetectionArea.set_collision_mask_value(3, true)
 		$AttackDetectionArea.set_collision_mask_value(3, true)
 		$AttackArea.set_collision_mask_value(3, true)
+		healthbar = $FriendHealthbar
+		$EnemyHealthbar.queue_free()
 	else:
 		set_collision_layer_value(3, true)
 		$EnemyDetectionArea.set_collision_mask_value(2, true)
 		$AttackDetectionArea.set_collision_mask_value(2, true)
 		$AttackArea.set_collision_mask_value(2, true)
-		
+		healthbar = $EnemyHealthbar
+		$FriendHealthbar.queue_free()
+	healthbar.max_value = max_health
 	$AttackArea/CollisionShape2D.disabled = true
 	
 func _physics_process(delta):
-	if $AttackArea/CollisionShape2D.disabled == false:
-		print("a")
 	if $AnimatedSprite2D.flip_h == true:
 		$AttackArea/CollisionShape2D.position = facing_left_position
 	else:
@@ -187,8 +190,6 @@ func _on_attack_cooldown_timer_timeout():
 	once_attack = false
 
 func _on_attack_area_body_entered(body):
-	print(1)
 	if not once_attack and fixed_target != null:
 		fixed_target.take_damage(self_attack_power)
 		once_attack = true
-		print(0)

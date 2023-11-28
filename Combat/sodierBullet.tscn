@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://djisqcpi4wnsu"]
 
-[ext_resource type="Texture2D" uid="uid://c55galaye6eb5" path="res://Assets/Soldier_1/Bullet.png" id="1_yr8ha"]
+[ext_resource type="Texture2D" uid="uid://c55galaye6eb5" path="res://Assets/Character/Soldier_1/Bullet.png" id="1_rplyw"]
 [ext_resource type="Script" path="res://Combat/SodierBullet.gd" id="2_8xqhs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fydj3"]
@@ -8,7 +8,7 @@ size = Vector2(2.70755, 1)
 
 [node name="SoldierBullet" type="Sprite2D"]
 scale = Vector2(0.8, 1)
-texture = ExtResource("1_yr8ha")
+texture = ExtResource("1_rplyw")
 script = ExtResource("2_8xqhs")
 
 [node name="Area2D" type="Area2D" parent="."]
